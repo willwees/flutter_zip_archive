@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  TextEditingController _controller;
+  late TextEditingController _controller;
 
   @override
   void initState() {
@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future _selectFile() async {
-    var file = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var file = await ImagePicker().pickImage(source: ImageSource.gallery);
     Directory _cacheDir = await getTemporaryDirectory();
     if (file == null) {
       return;
