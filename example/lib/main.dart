@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
             children: <Widget>[
                 Row(
                   children: <Widget>[
-                    Text("密码："),
+                    Text("Password："),
                     Expanded(child: TextField(
                       controller: _controller,
                     ))
@@ -47,11 +47,11 @@ class _MyAppState extends State<MyApp> {
               MaterialButton(
                 color: Theme.of(context).primaryColor,
                 onPressed: _selectFile,
-              child: Text("压缩"),),
+              child: Text("Compress"),),
                 MaterialButton(
                   color: Theme.of(context).primaryColor,
                   onPressed:_unzip,
-                  child: Text("解压"),)
+                  child: Text("Unzip"),)
             ],
           ),
         ),
