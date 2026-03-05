@@ -1,5 +1,7 @@
 package com.jlcool.flutterziparchive;
 
+import androidx.annotation.NonNull;
+
 import android.os.AsyncTask;
 
 import net.lingala.zip4j.core.ZipFile;
@@ -17,22 +19,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /**
  * FlutterZipArchivePlugin
  */
-public class FlutterZipArchivePlugin implements MethodCallHandler {
+public class FlutterZipArchivePlugin implements FlutterPlugin, MethodCallHandler {
+    private MethodChannel channel;
+
     /**
      * Plugin registration.
      */
-    public static void registerWith(Registrar registrar) {
-        final MethodChannel channel = new MethodChannel(registrar.messenger(), "flutter_zip_archive");
-        channel.setMethodCallHandler(new FlutterZipArchivePlugin());
+    @Override
+    public void onAttachedToEngine(@NonNull FlutterPlugin.FlutterPluginBinding flutterPluginBinding) {
+        channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "flutter_zip_archive");
+        channel.setMethodCallHandler(this);
+    }
+
+    @Override
+    public void onDetachedFromEngine(@NonNull FlutterPlugin.FlutterPluginBinding binding) {
+        channel.setMethodCallHandler(null);
     }
 
     @Override

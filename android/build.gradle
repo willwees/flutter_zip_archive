@@ -29,7 +29,7 @@ if (flutterRoot == null) {
 }
 apply plugin: 'com.android.library'
 android {
-    compileSdkVersion 28
+    compileSdkVersion 34
 
     defaultConfig {
         minSdkVersion 16
